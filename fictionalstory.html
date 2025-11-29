@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fictional Stories — Ruban Media Hub</title>
+
+<style>
+  :root{
+    --bg:#fafafa; --card:#fff; --muted:#666;
+    --accent:#6a00ff;
+    --text:#111;
+  }
+  .dark { --bg:#0b0f15; --card:#0f1520; --muted:#bbb; --accent:#a770ff; --text:#fff; }
+
+  *{box-sizing:border-box}
+  body{font-family:"Poppins",Arial,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.5;}
+
+  header{background:var(--card);padding:22px;text-align:center;border-bottom:4px solid var(--accent);}
+  header h1{margin:0;font-size:22px;}
+  header .sub{font-size:13px;color:var(--muted);margin-top:5px}
+
+  .wrap{max-width:980px;margin:20px auto;padding:0 14px;}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .controls input[type="search"]{flex:1;min-width:180px;padding:10px;border-radius:8px;border:1px solid #ccc}
+  .controls .btn{padding:9px 12px;background:var(--accent);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+
+  .story-card{background:var(--card);padding:18px;border-radius:14px;margin-bottom:18px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+
+  .meta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .badge{padding:6px 12px;border-radius:18px;font-size:13px;background:#2b2f36;color:#fff;}
+  .title{font-size:18px;margin:0 0 8px;color:var(--accent)}
+  .preview{color:var(--muted);margin-bottom:10px}
+
+  .layout{display:flex;gap:16px;flex-wrap:wrap}
+
+  /* ⭐ AUTO-FIT IMAGE ADDED HERE */
+  .thumb{
+    flex:0 0 400px;
+    width:400px;
+    height:200px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#ddd;
+  }
+  .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;        /* <--- added */
+    object-position:center;  /* <--- added */
+    display:block;
+  }
+
+  .content{flex:1;min-width:220px}
+
+  .full{display:none;margin-top:12px}
+  .read-btn{padding:9px 12px;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:8px;cursor:pointer;}
+  .read-btn.secondary{background:var(--accent);color:#fff;border:0}
+
+  footer{margin-top:30px;padding:14px;text-align:center;background:#000;color:#fff;border-top:3px solid var(--accent);}
+
+  @media(max-width:760px){
+    .thumb{width:100%;height:200px}
+    .layout{flex-direction:column}
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Ruban Media Hub</h1>
+  <div class="sub">Fictional Stories — Creative, Imaginary, Fantasy & Sci-Fi Tales</div>
+</header>
+
+<div class="wrap">
+
+  <!-- Controls -->
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search fictional stories..." />
+    <button class="btn" id="clear">Clear</button>
+    <button class="btn" id="toggleTheme">Dark / Light</button>
+  </div>
+
+  <!-- ⭐ Dynamic stories will appear here -->
+  <div id="storyList"></div>
+
+</div>
+
+<footer>
+  © 2025 Ruban Media Hub. All Rights Reserved. | Unauthorized copying prohibited.
+</footer>
+
+<!-- ⭐ LOAD EXTERNAL STORY FILE -->
+<script src="fictionalstories.js"></script>
+
+<script>
+
+  /* ====== BUILD STORIES DYNAMICALLY ====== */
+  function loadFictionalStories(){
+    const container = document.getElementById("storyList");
+    container.innerHTML = "";
+
+    fictionalStories.forEach(story=>{
+      const card = document.createElement("article");
+      card.className = "story-card";
+      card.setAttribute("data-title", story.title.toLowerCase());
+
+      card.innerHTML = `
+        <div class="meta-row">
+          <div class="badge">Fiction</div>
+          <div style="color:var(--muted);font-size:13px">Published: ${story.year}</div>
+        </div>
+
+        <h2 class="title">${story.title}</h2>
+
+        <p class="preview">${story.preview}</p>
+
+        <div class="layout">
+          <div class="thumb">
+            <img src="${story.image}" alt="${story.title}">
+          </div>
+
+          <div class="content">
+            <div style="color:var(--muted);font-size:14px">${story.highlights}</div>
+            <div class="full">${story.full}</div>
+            <button class="read-btn" onclick="toggleFull(this)">Read More ▼</button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", loadFictionalStories);
+
+
+
+  /* ====== Read More / Less ====== */
+  function toggleFull(btn){
+    const full = btn.closest('.story-card').querySelector('.full');
+    const open = full.style.display === "block";
+    full.style.display = open ? "none" : "block";
+    btn.textContent = open ? "Read More ▼" : "Read Less ▲";
+  }
+
+  /* ====== SEARCH ====== */
+  document.getElementById("search").addEventListener("input", function(){
+    const q = this.value.toLowerCase();
+    document.querySelectorAll(".story-card").forEach(card=>{
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(q) ? "" : "none";
+    });
+  });
+
+  document.getElementById("clear").onclick = ()=>{
+    document.getElementById("search").value="";
+    document.getElementById("search").dispatchEvent(new Event("input"));
+  };
+
+  /* ====== DARK / LIGHT MODE ====== */
+  document.getElementById("toggleTheme").onclick = ()=>{
+    document.documentElement.classList.toggle("dark");
+  };
+
+</script>
+
+</body>
+</html>

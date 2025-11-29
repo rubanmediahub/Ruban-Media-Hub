@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Real Stories — Ruban Media Hub</title>
+<link rel="stylesheet" href="realstories.css">
+<style>
+  :root{
+    --bg:#fafafa; --card:#fff; --muted:#666; --accent:#ff6600; --text:#111;
+  }
+  .dark { --bg:#0b0f15; --card:#0f1520; --muted:#bbb; --accent:#ff8800; --text:#fff; }
+
+  *{box-sizing:border-box}
+  body{font-family: "Poppins", Arial, sans-serif; margin:0; background:var(--bg); color:var(--text); line-height:1.5}
+  header{background:var(--card); padding:22px; border-bottom:4px solid var(--accent); text-align:center}
+  header h1{margin:0; font-size:22px; letter-spacing:0.4px}
+  .sub{font-size:13px; color:var(--muted); margin-top:6px}
+
+  .wrap{max-width:980px; margin:18px auto; padding:0 14px;}
+
+  .controls{display:flex; gap:10px; align-items:center; margin-bottom:14px; flex-wrap:wrap}
+  .controls input[type="search"]{flex:1; min-width:180px; padding:10px 12px; border-radius:8px; border:1px solid #d0d0d0}
+  .controls .btn{padding:9px 12px; background:var(--accent); color:#fff; border:0; border-radius:8px; cursor:pointer}
+
+  .story-card{background:var(--card); border-radius:12px; padding:18px; margin-bottom:16px; box-shadow:0 6px 18px rgba(0,0,0,0.05); overflow:hidden}
+  .meta-row{display:flex; gap:12px; align-items:center; margin-bottom:10px; flex-wrap:wrap}
+  .badge{background:#efefef;color:#333;padding:6px 10px;border-radius:18px;font-size:13px}
+  .badge.fiction{background:#2b2f36;color:#fff}
+  .title{font-size:18px;margin:0 0 8px 0;color:var(--accent)}
+  .preview{color:var(--muted); margin-bottom:10px}
+
+  .layout{display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap}
+  .thumb{flex:0 0 400px; width:400px; height:200px; overflow:hidden; border-radius:8px; background:#ddd}
+  .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  .content{flex:1; min-width:220px}
+
+  .full { display:none; margin-top:12px; color:var(--text) }
+  .read-btn{margin-top:10px; padding:9px 12px; background:transparent;border:1px solid var(--accent); color:var(--accent); border-radius:8px; cursor:pointer}
+
+  footer{margin-top:30px; background:#000; color:#fff; padding:12px 8px; text-align:center; font-size:14px; border-top:3px solid var(--accent)}
+
+  @media (max-width:760px){
+    .thumb{flex-basis:100%; width:100%; height:200px}
+    .layout{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ruban Media Hub</h1>
+  <div class="sub">Real Stories — short previews that expand into full long reads with images</div>
+</header>
+
+<div class="wrap">
+
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search stories by title or text..." />
+    <button class="btn" id="clear">Clear</button>
+    <button class="btn" id="toggleTheme">Dark / Light</button>
+  </div>
+
+  <!-- ✅ NEW: EMPTY CONTAINER WHERE JS WILL INSERT STORIES -->
+  <div id="storyList"></div>
+
+</div>
+
+<footer>
+  © 2025 Ruban Media Hub. All Rights Reserved. | Unauthorized copying/distribution prohibited.
+</footer>
+
+<!-- Load external story data -->
+<script src="realstories.js"></script>
+
+<script>
+  /* -------------------------
+     BUILD STORIES FROM JS FILE 
+  -------------------------- */
+  const list = document.getElementById("storyList");
+
+  realStories.forEach(story => {
+    list.innerHTML += `
+      <article class="story-card" data-title="${story.title.toLowerCase()}">
+        <div class="meta-row">
+          <div class="badge">Real Story</div>
+          <div style="color:var(--muted); font-size:13px">Published: ${story.year}</div>
+        </div>
+
+        <h2 class="title">${story.title}</h2>
+
+        <p class="preview">${story.preview}</p>
+
+        <div class="layout">
+          <div class="thumb"><img src="${story.image}" alt=""></div>
+
+          <div class="content">
+            <div style="color:var(--muted); font-size:14px">${story.highlights}</div>
+
+            <div class="full">${story.full}</div>
+
+            <button class="read-btn" onclick="toggleFull(this)">Read More ▼</button>
+          </div>
+        </div>
+      </article>
+    `;
+  });
+
+  // Toggle Read more
+  function toggleFull(btn){
+    const card = btn.closest('.story-card');
+    const full = card.querySelector('.full');
+    const open = full.style.display === 'block';
+    full.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? 'Read More ▼' : 'Read Less ▲';
+  }
+
+  // Search
+  document.getElementById('search').addEventListener('input', function(){
+    const q = this.value.trim().toLowerCase();
+    document.querySelectorAll('.story-card').forEach(card=>{
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+
+  document.getElementById('clear').addEventListener('click', ()=>{
+    document.getElementById('search').value="";
+    document.getElementById('search').dispatchEvent(new Event('input'));
+  });
+
+  document.getElementById('toggleTheme').addEventListener('click', ()=> {
+    document.documentElement.classList.toggle('dark');
+  });
+</script>
+
+</body>
+</html>
