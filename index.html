@@ -1,141 +1,377 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruban Media Hub</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Inline CSS for now — simple and clear */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f8f9fa;
-      color: #222;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 20px 0;
-    }
+<title>Ruban Media Hub</title>
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    nav {
-      margin-top: 10px;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101020;
+  color: white;
+  overflow-x: hidden;
+}
 
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      background: #444;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
+#fireworks {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
 
-    nav a:hover {
-      background: #d8660a;
-    }
+header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 25px 10px;
+  background: linear-gradient(135deg,#171717,#3b2100);
+  border-bottom: 2px solid gold;
+  box-shadow: 0 0 25px orange;
+}
 
-    main {
-      text-align: center;
-      padding: 40px 20px;
-    }
+header h1 {
+  color: gold;
+  font-size: 30px;
+  text-shadow: 0 0 15px orange;
+}
 
-    main h2 {
-      color: #333;
-      margin-bottom: 15px;
-    }
+nav {
+  margin-top: 15px;
+}
 
-    footer {
-      text-align: center;
-      background: #222;
-      color: #fff;
-      padding: 10px;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-  </style>
+nav a {
+  display: inline-block;
+  color: white;
+  background: #444;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: .3s;
+}
+
+nav a:hover {
+  background: #d8660a;
+  box-shadow: 0 0 15px orange;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px 100px;
+  min-height: 75vh;
+}
+
+.logo img {
+  object-fit: contain;
+}
+
+h2 {
+  color: gold;
+}
+
+.diwali-banner {
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 25px;
+  border: 2px solid gold;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#650e00,#a52a00,#4d0900);
+  box-shadow: 0 0 25px orange;
+  animation: glow 2s infinite alternate;
+}
+
+.diwali-banner h2 {
+  font-size: 32px;
+  color: #ffe47a;
+}
+
+.diwali-banner p {
+  color: white;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px orange; }
+  to { box-shadow: 0 0 35px gold; }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid gold;
+  max-width: 700px;
+  margin: 25px auto;
+}
+
+.diya {
+  position: fixed;
+  bottom: 10px;
+  font-size: 45px;
+  z-index: 3;
+  pointer-events: none;
+  animation: diyaGlow 1.5s infinite alternate;
+}
+
+.left { left: 15px; }
+.right { right: 15px; }
+
+@keyframes diyaGlow {
+  from { filter: drop-shadow(0 0 5px orange); }
+  to { filter: drop-shadow(0 0 22px gold); }
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: #171717;
+  color: gold;
+  padding: 12px;
+  border-top: 1px solid gold;
+}
+
+/* Mobile */
+@media(max-width:600px) {
+  header h1 { font-size: 23px; }
+  nav a { padding: 8px 10px; margin: 3px; }
+  .diwali-banner h2 { font-size: 25px; }
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Ruban Media Hub</h1>
-  
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="entertainment.html">Entertainment</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-      <div class="logo">
-      <div class="RUBAN MEDIA HUB">
-        <img src="RUBAN MEDIA HUB.png" width="100" height="50"alt="logo">
-        <h2>Our logo</h2>
-    <h2>Welcome to Ruban Media Hub</h2>
-    <p>This is our homepage. Explore the latest updates in entertainment, gallery, and news.</p>
-    <hr>
-    <br>
-    <h2>ALL BREAKING NEWS </h2>
-    <hr>
-    <br>
-   
-        <!-- Breaking News Headlines -->
-<section id="breaking-news-headlines">
-     <!-- Breaking News — Cyclone Ditwah (Live Update 11:26 AM IST, 02 Dec 2025) -->
-<section id="breaking-news">
+<!-- Fireworks canvas -->
+<canvas id="fireworks"></canvas>
 
-    <p><strong> </strong></p>
-  
-</section>
-      
-  </main>
+<header>
+  <h1>Ruban Media Hub</h1>
 
-  <footer>
-    <p>© 2025 Ruban Media Hub | All Rights Reserved</p>
-  </footer>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="entertainment.html">Entertainment</a>
+    <a href="news.html">News</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="logo">
+    <img src="RUBAN MEDIA HUB.png"
+         width="100" height="50"
+         alt="Ruban Media Hub logo">
+    <h2>Our Logo</h2>
+  </div>
+
+  <h2>Welcome to Ruban Media Hub</h2>
+
+  <p>
+    This is our homepage. Explore the latest updates
+    in entertainment, gallery, and news.
+  </p>
+
+  <div class="diwali-banner">
+    <h2>🪔 Happy Diwali! 🪔</h2>
+    <p>May the festival of lights bring happiness, prosperity and success to everyone.</p>
+    <p>✨ Celebrate the Light. Spread the Joy. ✨</p>
+  </div>
+
+  <hr>
+
+  <h2>ALL BREAKING NEWS</h2>
+
+  <hr>
+
+  <section id="breaking-news-headlines">
+    <section id="breaking-news">
+      <p></p>
+    </section>
+  </section>
+
+</main>
+
+<div class="diya left">🪔</div>
+<div class="diya right">🪔</div>
+
+<footer>
+  <p>© 2026 Ruban Media Hub | All Rights Reserved</p>
+</footer>
+
+<script>
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+let W, H;
+let particles = [];
+let rockets = [];
+
+function resize() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  W = window.innerWidth;
+  H = window.innerHeight;
+
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + "px";
+  canvas.style.height = H + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+const colors = [
+  "#ff3030",
+  "#ffd700",
+  "#00e5ff",
+  "#ff69b4",
+  "#7fff00",
+  "#ff8c00",
+  "#ffffff"
+];
+
+class Rocket {
+  constructor() {
+    this.x = W * (0.1 + Math.random() * 0.8);
+    this.y = H + 10;
+    this.targetY = H * (0.12 + Math.random() * 0.4);
+    this.speed = 5 + Math.random() * 3;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.trail = [];
+  }
+
+  update() {
+    this.trail.push({x:this.x, y:this.y});
+
+    if (this.trail.length > 8) {
+      this.trail.shift();
+    }
+
+    this.y -= this.speed;
+
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    this.trail.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x,p.y);
+      else ctx.lineTo(p.x,p.y);
+    });
+
+    ctx.stroke();
+
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,3,0,Math.PI*2);
+    ctx.fill();
+
+    if (this.y <= this.targetY) {
+      explode(this.x,this.y,this.color);
+      return false;
+    }
+
+    return true;
+  }
+}
+
+class Particle {
+  constructor(x,y,color) {
+    this.x = x;
+    this.y = y;
+    const angle = Math.random()*Math.PI*2;
+    const speed = Math.random()*6+1;
+
+    this.vx = Math.cos(angle)*speed;
+    this.vy = Math.sin(angle)*speed;
+
+    this.alpha = 1;
+    this.color = color;
+    this.size = Math.random()*2.5+1;
+    this.gravity = 0.045;
+    this.decay = 0.007 + Math.random()*0.009;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    this.vy += this.gravity;
+    this.vx *= 0.985;
+    this.vy *= 0.985;
+
+    this.alpha -= this.decay;
+
+    ctx.globalAlpha = Math.max(0,this.alpha);
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = this.color;
+
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+
+    return this.alpha > 0;
+  }
+}
+
+function explode(x,y,color) {
+  const count = 130 + Math.floor(Math.random()*100);
+
+  for(let i=0;i<count;i++) {
+    particles.push(new Particle(x,y,color));
+  }
+
+  // Secondary smaller bursts
+  for(let i=0;i<3;i++) {
+    const a = Math.random()*Math.PI*2;
+    particles.push(new Particle(
+      x + Math.cos(a)*25,
+      y + Math.sin(a)*25,
+      "#ffd700"
+    ));
+  }
+}
+
+function launchRocket() {
+  if (rockets.length < 5) {
+    rockets.push(new Rocket());
+  }
+
+  setTimeout(launchRocket, 450 + Math.random()*900);
+}
+
+function animate() {
+  ctx.clearRect(0,0,W,H);
+
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+
+  rockets = rockets.filter(r => r.update());
+  particles = particles.filter(p => p.update());
+
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+launchRocket();
+</script>
+
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
