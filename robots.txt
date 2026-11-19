@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://rubanmediahub.github.io/Ruban-Media-Hub/sitemap.xml
+
+Sitemap: https://rubanmediahub.pages.dev/sitemap-cloudflare.xml
