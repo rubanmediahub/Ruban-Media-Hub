@@ -3,68 +3,46 @@
 
   <url>
     <loc>https://rubanmediahub.pages.dev/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://rubanmediahub.pages.dev/news</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/india.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://rubanmediahub.pages.dev/india</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/tamilnadu.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://rubanmediahub.pages.dev/tamilnadu</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/world.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://rubanmediahub.pages.dev/world</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/sports.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://rubanmediahub.pages.dev/sports</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/entertainment.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://rubanmediahub.pages.dev/entertainment</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/gallery.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://rubanmediahub.pages.dev/gallery</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://rubanmediahub.pages.dev/contact</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/fictionalstory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://rubanmediahub.pages.dev/fictionalstory</loc>
   </url>
 
   <url>
-    <loc>https://rubanmediahub.pages.dev/realstory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://rubanmediahub.pages.dev/realstory</loc>
   </url>
 
 </urlset>
